@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зеленая Революция</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Темная и светлая тема */
+        .light-mode {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .dark-mode {
+            background-color: #2d2d2d;
+            color: #f5f5f5;
+        }
+
+        /* Навигация */
+        header {
+            background-color: #1d1d1d;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #32CD32; /* зеленый */
+        }
+
+        .switch-buttons button {
+            padding: 10px 20px;
+            background-color: #4d8b45;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .switch-buttons button:hover {
+            background-color: #268c23;
+        }
+
+        .cta-button {
+            background-color: #32CD32;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.3rem;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .cta-button:hover {
+            background-color: #268c23;
+        }
+
+        /* Контент страницы */
+        section {
+            padding: 60px 20px;
+            text-align: center;
+            margin-top: 90px; /* Для отступа от фиксированного меню */
+        }
+
+        .title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #4d8b45;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        footer {
+            background-color: #4d8b45;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        /* Анимации */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="light-mode">
+
+    <header>
+        <div class="logo">Зеленая Революция</div>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="about.html">О компании</a>
+            <a href="products.html">Продукты</a>
+            <a href="contact.html">Контакты</a>
+        </nav>
+        <div class="switch-buttons">
+            <button onclick="toggleTheme()">Сменить тему</button>
+            <button onclick="toggleLanguage()">EN/RU</button>
+        </div>
+    </header>
+
+    <!-- Главная страница -->
+    <section id="home">
+        <div class="title fade-up" id="header-title">Построим экологическое будущее вместе</div>
+        <a href="about.html" class="cta-button">Узнать больше</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Зеленая Революция. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Переключение темы
+        function toggleTheme() {
+            let currentTheme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+            if (currentTheme === 'light') {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+            }
+        }
+
+        // Переключение языка
+        let currentLanguage = 'ru';
+        const texts = {
+            ru: {
+                headerTitle: 'Построим экологическое будущее вместе',
+                aboutBtn: 'О компании',
+                productsBtn: 'Продукты',
+                contactBtn: 'Контакты'
+            },
+            en: {
+                headerTitle: 'Let’s build a sustainable future together',
+                aboutBtn: 'About Us',
+                productsBtn: 'Products',
+                contactBtn: 'Contact Us'
+            }
+        };
+
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'ru' ? 'en' : 'ru';
+            document.getElementById('header-title').innerText = texts[currentLanguage].headerTitle;
+            document.querySelectorAll('a')[0].innerText = texts[currentLanguage].aboutBtn;
+            document.querySelectorAll('a')[1].innerText = texts[currentLanguage].productsBtn;
+            document.querySelectorAll('a')[2].innerText = texts[currentLanguage].contactBtn;
+        }
+    </script>
+
+</body>
+
+</html>
